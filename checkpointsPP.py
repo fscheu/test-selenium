@@ -1,11 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 # Start the driver
 with webdriver.Chrome() as driver:
     # Open URL
-    driver.get("https://seleniumhq.github.io")
+    driver.get("https://checkpointspp.techint.net")
 
     # Setup wait for later
     wait = WebDriverWait(driver, 10)
@@ -17,12 +18,16 @@ with webdriver.Chrome() as driver:
     assert len(driver.window_handles) == 1
 
     # Click the link which opens in a new window
-    # driver.find_element_by_link_text("new window").click()
+    dominio = driver.find_element_by_id("txtdomain")
+    dominio.send_keys('BAIRES')
+    usuario = driver.find_element_by_id("txtuser")
+    usuario.send_keys('BAISCF')
 
-    # # Wait for the new window or tab
-    # wait.until(EC.number_of_windows_to_be(2))
 
-    # # Loop through until we find a new window handle
+    # Wait for the new window or tab
+    wait.until(EC.number_of_windows_to_be(2))
+
+    # Loop through until we find a new window handle
     # for window_handle in driver.window_handles:
     #     if window_handle != original_window:
     #         driver.switch_to.window(window_handle)
